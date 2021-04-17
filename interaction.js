@@ -12,6 +12,7 @@ function DnD(canvas, interactor) {
   // Developper les 3 fonctions gérant les événements
   DnD.prototype.pression = function (e) {
     hasPress = true
+    interactor.onInteractionStart(this);
     var pos = getMousePosition(canvas, e)
     console.log("pression")
     console.log(pos)
@@ -21,6 +22,7 @@ function DnD(canvas, interactor) {
 
   DnD.prototype.deplacement = function (e) {
     if(hasPress) {
+      interactor.onInteractionUpdate(this);
       pos = getMousePosition(canvas, e)
       console.log("deplacement")
       console.log(initial_x)
@@ -33,6 +35,7 @@ function DnD(canvas, interactor) {
 
   DnD.prototype.relachement = function (e) {
     if(hasPress) {
+      interactor.onInteractionEnd(this);
       console.log("relachement")
       console.log(initial_x)
       console.log(initial_y)
